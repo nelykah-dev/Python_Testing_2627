@@ -19,6 +19,7 @@ app.secret_key = 'something_special'
 
 competitions = loadCompetitions()
 clubs = loadClubs()
+bookings = {}
 
 @app.route('/')
 def index():
@@ -46,6 +47,12 @@ def purchasePlaces():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     placesRequired = int(request.form['places'])
+    key = (club['name'], competition['name'])
+    alreadyBooked = bookings.get(key, 0)
+    if alreadyBooked + placesRequired > 12:
+        flash('You cannot book more than 12 places in a competition')
+        return render_template('welcome.html', club=club, competitions=competitions)
+    bookings[key] = alreadyBooked + placesRequired
     competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-placesRequired
     flash('Great-booking complete!')
     return render_template('welcome.html', club=club, competitions=competitions)
