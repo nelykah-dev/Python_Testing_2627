@@ -9,8 +9,8 @@ def fake_data(monkeypatch):
                      'numberOfPlaces': '10'}]
     monkeypatch.setattr(server, 'clubs', clubs)
     monkeypatch.setattr(server, 'competitions', competitions)
+    monkeypatch.setattr(server, 'bookings', {})
     return clubs, competitions
-
 
 def purchase(places):
     with server.app.test_request_context(
