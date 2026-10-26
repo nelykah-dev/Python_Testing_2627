@@ -76,6 +76,11 @@ Merci !
     [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
    
  6. Flake8 Report 
+    Commande exécutée : `python -m flake8 server.py tests`
+
+    Résultat : aucune erreur de logique (aucun code F). Il reste des remarques de style : E231 (espace après une virgule), E111/E117 (indentation), E302 (lignes vides), E501 (lignes de plus de 79 caractères), W292/W293 (fin de fichier et espaces).
+
+
     
 
 
